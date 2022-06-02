@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* .aim{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+/* .area{
+  background-color: black;
+  color:white;
+  height: 500px;
+  width: 800px;
+  margin: auto;
+  position: absolute;
+} */
+
+.target{
+  background-color: red;
+  height: 12px;
+  width: 12px;
+  cursor: pointer;
+  position: absolute;
+  border-radius: 6px;
+}
+
+/* .counter{
+    position: fixed;
+    left: 0;
+    color: white;
+}
+
+.countdown{
+    position: fixed;
+    left: 0;
+    top: 50px;
+}
+
+.best{
+    position: fixed;
+    left: 0;
+    top: 100px;
+}
+
+.restart{
+    position: fixed;
+    left: 0;
+    top: 150px;
+}
+
+.lobby{
+    position: fixed;
+    right: 20px;
+}
+
+.toggle-active{
+    position: fixed;
+    top: 200px;
+    left: 0;
+}
+
+.leave{
+    position: fixed;
+    top: 250px;
+} */

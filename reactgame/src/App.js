@@ -1,0 +1,195 @@
+import Aim from "./components/Aim"
+import io from "socket.io-client"
+import React from "react"
+import Intro from "./components/Intro"
+import Lobby from "./components/Lobby"
+import Game from "./components/Game"
+
+const socket = io.connect("http://localhost:3001")
+
+export default function App(){
+    const [name, setName] = React.useState("")
+    const [begin, setBegin] = React.useState(false)
+    const [host, setHost] = React.useState(false)
+
+    const [active, setActive] = React.useState(false)
+    const [time, setTime] = React.useState(20)
+    const [count, setCount] = React.useState(0)
+
+    const [room, setRoom] = React.useState("")
+    const [inputroom, setInputRoom] = React.useState("")
+
+    const [members, setMembers] = React.useState([])
+
+    React.useEffect(() => {
+        // console.log("beginning", room)
+        if(room !== "" && !begin){
+            console.log(room)
+            setBegin(true)
+        }
+    },[room])
+    // console.log(host, "|", time, "|", count, "|", active, "|", room, '|', begin)
+
+    React.useEffect(() => {
+        
+        socket.on("room_members", (data) => {
+            console.log(data)
+            let tempMembers = []
+            const datakeys = Object.keys(data)
+            // console.log(datakeys)
+            let presentHost = false
+            for(let i=0; i<datakeys.length; i++){
+                tempMembers.push(<li key={datakeys[i]}>{data[datakeys[i]]["name"]}
+                {data[datakeys[i]]["host"]?"(Host)":""}</li>)
+                if(data[datakeys[i]]["host"]){
+                    presentHost = true
+                }
+            }
+            // console.log(presentHost)
+            setMembers(tempMembers)
+            if(!presentHost){
+                console.log('no host')
+                alert("The host has quit, ending game...")
+                leaveRoom()
+            }
+        })
+
+        socket.on("new_counts", (data) => {
+            // console.log(data)
+            let tempMembers = []
+            const datakeys = Object.keys(data)
+
+            for(let i=0; i<datakeys.length; i++){
+                tempMembers.push(<li key={datakeys[i]}>{data[datakeys[i]]["name"]}
+                    {data[datakeys[i]]["host"] ? "(Host)" : ""}
+                    Score: {"\n" + data[datakeys[i]]["count"]} Roundwins: {data[datakeys[i]]["roundwins"]}
+                    </li>)
+            }
+            setMembers(tempMembers)
+
+        })
+
+        socket.on("zero_self_count", () => setCount(0))
+
+        socket.on("new_time", (data) => {
+            if(!active){
+                setActive(true)
+            }
+            if(data === 0){
+                setActive(false)
+            }
+            setTime(data)
+        })
+
+        socket.on("joined", (newroom) => {
+            // console.log("joined")
+            // console.log(newroom)
+            // setRoom(document.querySelector("#room_input").value)
+            setRoom(newroom)
+            // setBegin(true)
+            
+        })
+
+        socket.on("join_fail", (message) => {
+            alert(message)
+            setHost(false)
+        })
+    }, [socket])
+
+    function joinGame(){
+        // const temproom = document.querySelector("#room_input").value
+        // if (temproom !== "") {
+        //     socket.emit("join_room", temproom, name)
+        // }
+        // console.log(inputroom)
+        if (inputroom !== "") {
+            socket.emit("join_room", inputroom, name)
+        }
+        // setBegin(true)
+    }
+
+    function createLobby(){
+        // const temproom = document.querySelector("#room_input").value
+        // if (temproom !== "") {
+        //     socket.emit("create_room", temproom, name)
+        // }
+        // console.log("createlobby")
+        // console.log(inputroom)
+        if (inputroom !== "") {
+            socket.emit("create_room", inputroom, name)
+        }
+        setHost(true)
+    }
+
+    React.useEffect(() => {
+        if(host){
+            let interval = null;
+            if (time > 0 && active) {
+                interval = setInterval(() => setTime(time - 1), 1000)
+                socket.emit("update_time", room, time)
+            } else if (time === 0) {
+                if(!active){
+                    // console.log("game ended")
+                    socket.emit("game_ended")
+                }
+                setActive(false)
+                
+                // setEnd(true)
+            }
+            
+            return () => clearInterval(interval)
+        }
+    }, [time, active])
+
+    function leaveRoom(){
+        console.log("leaving")
+        socket.emit("leave_room")
+        setActive(false)
+        setBegin(false)
+        setHost(false)
+        setRoom("")
+    }
+
+    React.useEffect(() => {
+        // console.log("weens")
+        if(begin){
+            socket.emit("update_count", count)
+        }
+    }, [count])
+
+    function startGame(){
+        socket.emit("zero_counts", room)
+        setTime(20)
+        setActive(!active)
+
+    }
+
+    const items = {
+        count: count,
+        setCount: setCount,
+        active: active,
+        room: room,
+        members: members,
+        time: time,
+        host: host,
+        active: active,
+        startGame: startGame,
+        leaveRoom: leaveRoom
+    }
+
+    return (
+        <div className="px-4 bg-slate-200 h-screen w-screen flex justify-center">
+            <div className="w-screen">
+                {begin ? 
+                    <Game items={items} />
+                :
+                    <Intro joinGame={joinGame} createLobby={createLobby} handleChange={setName} 
+                    inputroom={inputroom} handleRoom={setInputRoom}/>
+                }
+            </div>
+            
+
+        </div>
+        
+    )   
+}
