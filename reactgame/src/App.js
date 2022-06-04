@@ -1,8 +1,6 @@
-import Aim from "./components/Aim"
 import io from "socket.io-client"
 import React from "react"
 import Intro from "./components/Intro"
-import Lobby from "./components/Lobby"
 import Game from "./components/Game"
 
 const socket = io.connect("http://localhost:3001")
@@ -34,19 +32,20 @@ export default function App(){
         
         socket.on("room_members", (data) => {
             console.log(data)
-            let tempMembers = []
+            // let tempMembers = []
             const datakeys = Object.keys(data)
-            // console.log(datakeys)
+            // // console.log(datakeys)
             let presentHost = false
             for(let i=0; i<datakeys.length; i++){
-                tempMembers.push(<li key={datakeys[i]}>{data[datakeys[i]]["name"]}
-                {data[datakeys[i]]["host"]?"(Host)":""}</li>)
+            //     tempMembers.push(<li key={datakeys[i]}>{data[datakeys[i]]["name"]}
+            //     {data[datakeys[i]]["host"]?"(Host)":""}</li>)
                 if(data[datakeys[i]]["host"]){
                     presentHost = true
                 }
             }
-            // console.log(presentHost)
-            setMembers(tempMembers)
+            // // console.log(presentHost)
+            // setMembers(tempMembers)
+            setMembers(data)
             if(!presentHost){
                 console.log('no host')
                 alert("The host has quit, ending game...")
@@ -82,12 +81,7 @@ export default function App(){
         })
 
         socket.on("joined", (newroom) => {
-            // console.log("joined")
-            // console.log(newroom)
-            // setRoom(document.querySelector("#room_input").value)
-            setRoom(newroom)
-            // setBegin(true)
-            
+            setRoom(newroom)            
         })
 
         socket.on("join_fail", (message) => {
@@ -97,24 +91,12 @@ export default function App(){
     }, [socket])
 
     function joinGame(){
-        // const temproom = document.querySelector("#room_input").value
-        // if (temproom !== "") {
-        //     socket.emit("join_room", temproom, name)
-        // }
-        // console.log(inputroom)
         if (inputroom !== "") {
             socket.emit("join_room", inputroom, name)
         }
-        // setBegin(true)
     }
 
     function createLobby(){
-        // const temproom = document.querySelector("#room_input").value
-        // if (temproom !== "") {
-        //     socket.emit("create_room", temproom, name)
-        // }
-        // console.log("createlobby")
-        // console.log(inputroom)
         if (inputroom !== "") {
             socket.emit("create_room", inputroom, name)
         }
@@ -172,13 +154,15 @@ export default function App(){
         members: members,
         time: time,
         host: host,
-        active: active,
         startGame: startGame,
-        leaveRoom: leaveRoom
+        leaveRoom: leaveRoom,
+        name: name
     }
 
     return (
-        <div className="px-4 bg-slate-200 h-screen w-screen flex justify-center">
+        // <div className="px-4 bg-[#5CDB95] h-screen w-screen flex pt-6 justify-center">
+        <div className="px-4 bg-gradient-to-r from-[#5CDB95] to-[#70c5f7] h-screen w-screen flex pt-10 justify-center
+        overflow-hidden">
             <div className="w-screen">
                 {begin ? 
                     <Game items={items} />

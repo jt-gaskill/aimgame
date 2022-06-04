@@ -1,6 +1,5 @@
 import React from "react"
 import Target from "./Target"
-import Countdown from "./Countdown"
 
 export default function Aim(props) {
                                     // [vertical, horizontal]

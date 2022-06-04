@@ -97,9 +97,12 @@ io.on("connection", (socket) => {
         const [, room] = socket.rooms;
         // console.log(rooms)
         // console.log(room)
-        if(rooms[room][socket.id] !== undefined){
-            rooms[room][socket.id]["count"] = count
-        } 
+        if(rooms[room]){
+            if (rooms[room][socket.id] !== undefined) {
+                rooms[room][socket.id]["count"] = count
+            } 
+        }
+        
 
         socket.nsp.to(room).emit("new_counts", rooms[room])
     })
