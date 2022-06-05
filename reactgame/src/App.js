@@ -43,7 +43,7 @@ export default function App(){
                     presentHost = true
                 }
             }
-            // // console.log(presentHost)
+            // console.log(presentHost)
             // setMembers(tempMembers)
             setMembers(data)
             if(!presentHost){
@@ -55,16 +55,17 @@ export default function App(){
 
         socket.on("new_counts", (data) => {
             // console.log(data)
-            let tempMembers = []
-            const datakeys = Object.keys(data)
+            // let tempMembers = []
+            // const datakeys = Object.keys(data)
 
-            for(let i=0; i<datakeys.length; i++){
-                tempMembers.push(<li key={datakeys[i]}>{data[datakeys[i]]["name"]}
-                    {data[datakeys[i]]["host"] ? "(Host)" : ""}
-                    Score: {"\n" + data[datakeys[i]]["count"]} Roundwins: {data[datakeys[i]]["roundwins"]}
-                    </li>)
-            }
-            setMembers(tempMembers)
+            // for(let i=0; i<datakeys.length; i++){
+            //     tempMembers.push(<li key={datakeys[i]}>{data[datakeys[i]]["name"]}
+            //         {data[datakeys[i]]["host"] ? "(Host)" : ""}
+            //         Score: {"\n" + data[datakeys[i]]["count"]} Roundwins: {data[datakeys[i]]["roundwins"]}
+            //         </li>)
+            // }
+            // setMembers(tempMembers)
+            setMembers(data)
 
         })
 
