@@ -18,6 +18,7 @@ export default function App(){
     const [inputroom, setInputRoom] = React.useState("")
 
     const [members, setMembers] = React.useState([])
+    const [game, setGame] = React.useState(0)
 
     React.useEffect(() => {
         // console.log("beginning", room)
@@ -30,8 +31,8 @@ export default function App(){
 
     React.useEffect(() => {
         
-        socket.on("room_members", (data) => {
-            console.log(data)
+        socket.on("room_members", (data, roomgame) => {
+            // console.log(data, roomgame)
             // let tempMembers = []
             const datakeys = Object.keys(data)
             // // console.log(datakeys)
@@ -50,6 +51,9 @@ export default function App(){
                 console.log('no host')
                 alert("The host has quit, ending game...")
                 leaveRoom()
+            }
+            if(roomgame !== game){
+                setGame(roomgame)
             }
         })
 
@@ -89,6 +93,10 @@ export default function App(){
             alert(message)
             setHost(false)
         })
+
+        socket.on("new_game", (newgame) => {
+            setGame(newgame)
+        })
     }, [socket])
 
     function joinGame(){
@@ -102,6 +110,7 @@ export default function App(){
             socket.emit("create_room", inputroom, name)
         }
         setHost(true)
+        socket.emit("get_game", game)
     }
 
     React.useEffect(() => {
@@ -131,6 +140,8 @@ export default function App(){
         setBegin(false)
         setHost(false)
         setRoom("")
+        setTime(20)
+        setGame(0)
     }
 
     React.useEffect(() => {
@@ -157,8 +168,16 @@ export default function App(){
         host: host,
         startGame: startGame,
         leaveRoom: leaveRoom,
-        name: name
+        name: name,
+        game: game
     }
+
+    React.useEffect(() => {
+        if(host && !active){
+            // console.log("new game")
+            socket.emit("get_game", game)
+        }
+    },[active])
 
     return (
         // <div className="px-4 bg-[#5CDB95] h-screen w-screen flex pt-6 justify-center">

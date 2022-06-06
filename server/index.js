@@ -15,6 +15,7 @@ const io = new Server(server, {
 })
 
 const rooms = {}
+const games = {}
 
 io.on("connection", (socket) => {
     console.log(`User connected: ${socket.id}`)
@@ -22,8 +23,10 @@ io.on("connection", (socket) => {
     socket.on("join_room", (data, name) => {
         // console.log(socket.rooms)
         // console.log(data, name)
+        // console.log(games)
         const [, room] = socket.rooms;
-        console.log(rooms)
+        // console.log(rooms)
+        // console.log(room)
         // console.log(rooms[data])
         if (!rooms[data] || JSON.stringify(rooms[data]) === '{}'){
             socket.emit("join_fail", "This room does not exist")
@@ -45,7 +48,7 @@ io.on("connection", (socket) => {
             rooms[data][socket.id] = {name: name, host: false, roundwins: 0, count: 0}
             // console.log(io.sockets.adapter.rooms.get(data))
             // console.log(rooms[data])
-            socket.nsp.to(data).emit("room_members", rooms[data], false)
+            socket.nsp.to(data).emit("room_members", rooms[data], games[data])
         }   
         console.log(rooms)
     })
@@ -141,6 +144,20 @@ io.on("connection", (socket) => {
             socket.nsp.to(room).emit("new_counts", rooms[room])
         }
         
+    })
+
+    socket.on("get_game", (game) => {
+
+        const [, room] = socket.rooms
+        let newgame = Math.floor(Math.random() *2)
+        
+        while(newgame === game){
+            newgame = Math.floor(Math.random() * 2)
+        }
+        console.log(newgame)
+        games[room] = newgame
+        socket.nsp.to(room).emit("new_game", newgame)
+
     })
 })
 
