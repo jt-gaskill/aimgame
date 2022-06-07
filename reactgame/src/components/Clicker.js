@@ -9,7 +9,7 @@ export default function Clicker(props){
             {props.active ? <div className="h-[500px] w-[800px] bg-red-800 flex justify-center"
              onClick={() => props.handleCount(props.count + 1)}>
                 <span className="leading-[500px] text-9xl opacity-40">{props.count}</span>
-            </div> : <p className="text-white">Click the most in 20 seconds!</p>}
+            </div> : <p className="text-white">Click the fastest!</p>}
         </div>
     )
 }

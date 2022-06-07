@@ -28,8 +28,8 @@ export default function Aim(props) {
             {/* <span className="counter">Count: {props.count}</span> */}
             
             {/* <span className="absolute left-0">Best: {best}</span> */}
-            <div className="h-[500px] w-[800px] bg-black relative">
-                {props.active && <Target handleClick={hit} position={position} />}
+            <div className="h-[500px] w-[800px] bg-black relative text-white leading-[500px] flex justify-center select-none">
+                {props.active ? <Target handleClick={hit} position={position} />:<p>Click the red dot!</p>}
             </div>
             
             {/* {end && <button onClick={restart} className="restart">Play again</button>} */}

@@ -27,7 +27,7 @@ export default function GameInfo({items}){
                 <button className="bg-green-600 rounded-md p-1" onClick={items.startGame}>Start Round</button> :
                 <button className="bg-slate-400 rounded-md p-1 cursor-default">In Progress</button> 
             ) : (!items.active ? 
-                    <button className="bg-yellow-500 rounded-md p-1 cursor-default" onClick={items.startGame}>Waiting for host...</button> :
+                    <button className="bg-yellow-500 rounded-md p-1 cursor-default">Waiting for host...</button> :
                     <button className="bg-slate-400 rounded-md p-1 cursor-default">In Progress</button> 
             )}
             
