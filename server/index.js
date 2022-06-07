@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express()
 const http = require("http")
+// const socketio = require("socket.io");
 const {Server} = require("socket.io");
 const cors = require("cors")
 
@@ -9,10 +10,14 @@ const server = http.createServer(app)
 
 const io = new Server(server, {
     cors:{
-        origin: "http://localhost:3000",
+        origin: "https://629f7e1d56a6fa2b1cecb5a6--the-awesome-jt-gaskill-site.netlify.app",
+        // origin: "http://localhost:3000",
         methods: ["GET", "POST"],
     }
 })
+
+// const io = socketio(server)
+const PORT = process.env.PORT || 3001
 
 const rooms = {}
 const games = {}
@@ -161,7 +166,7 @@ io.on("connection", (socket) => {
     })
 })
 
-server.listen(3001, () => console.log("server is running"))
-
+// server.listen(3001, () => console.log("server is running"))
+server.listen(PORT, () => console.log("server is running"))
 
 
