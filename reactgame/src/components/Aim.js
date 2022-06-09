@@ -3,7 +3,7 @@ import Target from "./Target"
 
 export default function Aim(props) {
                                     // [vertical, horizontal]
-    const [position, setPosition] = React.useState([245,395])
+    const [position, setPosition] = React.useState([Math.ceil(Math.random() * 490), Math.ceil(Math.random() * 790)])
 
     // const [best, setBest] = React.useState(() => (JSON.parse(localStorage.getItem("bestAim")) || 0))
 
@@ -14,12 +14,19 @@ export default function Aim(props) {
     //     }
     // }, [props.active])
 
-    function hit(){
+    function hit(e){
         // if(!active){
         //     setActive(true)
         // }
+        e.stopPropagation()
         setPosition([Math.ceil(Math.random() * 490), Math.ceil(Math.random() * 790)])
         props.handleCount(props.count +1)
+    }
+
+    function miss(){
+        
+        props.handleCount(props.count - 1)
+
     }
 
     return (
@@ -28,8 +35,8 @@ export default function Aim(props) {
             {/* <span className="counter">Count: {props.count}</span> */}
             
             {/* <span className="absolute left-0">Best: {best}</span> */}
-            <div className="h-[500px] w-[800px] bg-black relative text-white leading-[500px] flex justify-center select-none">
-                {props.active ? <Target handleClick={hit} position={position} />:<p>Click the red dot!</p>}
+            <div onClick={miss} className="h-[500px] w-[800px] bg-black relative text-white leading-[500px] flex justify-center select-none">
+                {props.active ? <Target handleClick={(e) => hit(e)} position={position} />:<p>Click the red dot!</p>}
             </div>
             
             {/* {end && <button onClick={restart} className="restart">Play again</button>} */}

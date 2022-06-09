@@ -2,14 +2,20 @@ import React from "react"
 import Countdown from "./Countdown"
 
 export default function GameInfo({items}){
-    const [best, setBest] = React.useState(() => (JSON.parse(localStorage.getItem("bestAim")) || 0))
+    const gamenames = ["Clicker", "Aim"]
 
+    const [best, setBest] = React.useState(() => (JSON.parse(localStorage.getItem("best"+gamenames[items.game])) || 0))
+    console.log(gamenames[items.game])
     React.useEffect(() => {
         if (items.count > best) {
             setBest(items.count)
-            localStorage.setItem("bestAim", JSON.stringify(items.count))
+            localStorage.setItem("best"+gamenames[items.game], JSON.stringify(items.count))
         }
     }, [items.active])
+
+    React.useEffect(() => {
+        setBest(JSON.parse(localStorage.getItem("best" + gamenames[items.game])) || 0)
+    },[items.game])
 
 
     return (
