@@ -3,8 +3,8 @@ import React from "react"
 import Intro from "./components/Intro"
 import Game from "./components/Game"
 
-const socket = io.connect("https://react-aimgame.herokuapp.com/")
-// const socket = io.connect("http://localhost:3001")
+// const socket = io.connect("https://react-aimgame.herokuapp.com/")
+const socket = io.connect("http://localhost:3001")
 
 export default function App(){
     const [name, setName] = React.useState("")
@@ -87,7 +87,8 @@ export default function App(){
         })
 
         socket.on("joined", (newroom) => {
-            setRoom(newroom)            
+            setRoom(newroom)           
+            setCount(0) 
         })
 
         socket.on("join_fail", (message) => {
@@ -135,8 +136,8 @@ export default function App(){
     }, [time, active])
 
     function leaveRoom(){
-        console.log("leaving")
-        socket.emit("leave_room")
+        // console.log("leaving")
+        socket.emit("leave_room", game)
         setActive(false)
         setBegin(false)
         setHost(false)
@@ -175,7 +176,7 @@ export default function App(){
 
     React.useEffect(() => {
         if(host && !active){
-            // console.log("new game")
+            console.log("new game")
             socket.emit("get_game", game)
         }
     },[active])

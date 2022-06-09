@@ -10,8 +10,8 @@ const server = http.createServer(app)
 
 const io = new Server(server, {
     cors:{
-        origin: "https://629f7e1d56a6fa2b1cecb5a6--the-awesome-jt-gaskill-site.netlify.app",
-        // origin: "http://localhost:3000",
+        // origin: "https://629f8037be9e183140d8228d--the-awesome-jt-gaskill-site.netlify.app",
+        origin: "http://localhost:3000",
         methods: ["GET", "POST"],
     }
 })
@@ -69,14 +69,14 @@ io.on("connection", (socket) => {
         }
     })
 
-    socket.on("leave_room", () => {
+    socket.on("leave_room", (curgame) => {
         const [, room] = socket.rooms;
         // console.log(rooms[room])
         if (rooms[room]) {
             // rooms[room] = rooms[room].filter(user => !(user.id === socket.id))
             socket.leave(room)
             delete rooms[room][socket.id]
-            socket.to(room).emit("room_members", rooms[room])
+            socket.to(room).emit("room_members", rooms[room], curgame)
 
         }
     })
