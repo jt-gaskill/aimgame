@@ -13,6 +13,8 @@ export default function App(){
 
     const [active, setActive] = React.useState(false)
     const [time, setTime] = React.useState(20)
+    const [startround, setStartRound] = React.useState(false)
+
     const [count, setCount] = React.useState(0)
 
     const [room, setRoom] = React.useState("")
@@ -34,19 +36,14 @@ export default function App(){
         
         socket.on("room_members", (data, roomgame) => {
             // console.log(data, roomgame)
-            // let tempMembers = []
             const datakeys = Object.keys(data)
             // // console.log(datakeys)
             let presentHost = false
             for(let i=0; i<datakeys.length; i++){
-            //     tempMembers.push(<li key={datakeys[i]}>{data[datakeys[i]]["name"]}
-            //     {data[datakeys[i]]["host"]?"(Host)":""}</li>)
                 if(data[datakeys[i]]["host"]){
                     presentHost = true
                 }
             }
-            // console.log(presentHost)
-            // setMembers(tempMembers)
             setMembers(data)
             if(!presentHost){
                 console.log('no host')
@@ -59,29 +56,20 @@ export default function App(){
         })
 
         socket.on("new_counts", (data) => {
-            // console.log(data)
-            // let tempMembers = []
-            // const datakeys = Object.keys(data)
-
-            // for(let i=0; i<datakeys.length; i++){
-            //     tempMembers.push(<li key={datakeys[i]}>{data[datakeys[i]]["name"]}
-            //         {data[datakeys[i]]["host"] ? "(Host)" : ""}
-            //         Score: {"\n" + data[datakeys[i]]["count"]} Roundwins: {data[datakeys[i]]["roundwins"]}
-            //         </li>)
-            // }
-            // setMembers(tempMembers)
             setMembers(data)
 
         })
 
         socket.on("zero_self_count", () => setCount(0))
 
-        socket.on("new_time", (data) => {
-            if(!active){
-                setActive(true)
-            }
-            if(data === 0){
-                setActive(false)
+        socket.on("new_time", (data, activeround) => {
+            if(!activeround){
+                if (!active) {
+                    setActive(true)
+                }
+                if (data === 0) {
+                    setActive(false)
+                }
             }
             setTime(data)
         })
@@ -118,9 +106,19 @@ export default function App(){
     React.useEffect(() => {
         if(host){
             let interval = null;
-            if (time > 0 && active) {
+            if(startround){
+                if(time > 0){
+                    interval = setInterval(() => setTime(time - 1), 1000)
+                    socket.emit("update_time", room, time, true)
+                } else{
+                    setStartRound(false)
+                    setTime(20)
+                    setActive(true)
+                }
+            }
+            else if (time > 0 && active) {
                 interval = setInterval(() => setTime(time - 1), 1000)
-                socket.emit("update_time", room, time)
+                socket.emit("update_time", room, time, false)
             } else if (time === 0) {
                 if(!active){
                     // console.log("game ended")
@@ -155,8 +153,10 @@ export default function App(){
 
     function startGame(){
         socket.emit("zero_counts", room)
-        setTime(20)
-        setActive(!active)
+        // setTime(20)
+        // setActive(!active)
+        setStartRound(true)
+        setTime(3)
 
     }
 

@@ -96,8 +96,8 @@ io.on("connection", (socket) => {
         }
     })
 
-    socket.on("update_time", (room, time) => {
-        socket.to(room).emit("new_time", time)
+    socket.on("update_time", (room, time, roundstart) => {
+        socket.to(room).emit("new_time", time, roundstart)
     })
 
     socket.on("update_count", (count) => {
