@@ -19,7 +19,7 @@ export default function Aim(props) {
         //     setActive(true)
         // }
         e.stopPropagation()
-        setPosition([Math.ceil(Math.random() * 490), Math.ceil(Math.random() * 790)])
+        setPosition([Math.ceil(Math.random() * 488)+1, Math.ceil(Math.random() * 788)+1])
         props.handleCount(props.count +1)
     }
 

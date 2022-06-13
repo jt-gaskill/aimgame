@@ -10,8 +10,8 @@ const server = http.createServer(app)
 
 const io = new Server(server, {
     cors:{
-        // origin: "https://62a3da3f23b63b2fa1736aa1--the-awesome-jt-gaskill-site.netlify.app",
-        origin: "http://localhost:3000",
+        origin: "https://62a7607f108ca3006c146bbc--the-awesome-jt-gaskill-site.netlify.app",
+        // origin: "http://localhost:3000",
         methods: ["GET", "POST"],
     }
 })
@@ -154,10 +154,10 @@ io.on("connection", (socket) => {
     socket.on("get_game", (game) => {
 
         const [, room] = socket.rooms
-        let newgame = Math.floor(Math.random() *2)
+        let newgame = Math.floor(Math.random() *3)
         
         while(newgame === game){
-            newgame = Math.floor(Math.random() * 2)
+            newgame = Math.floor(Math.random() * 3)
         }
         console.log(newgame)
         games[room] = newgame
