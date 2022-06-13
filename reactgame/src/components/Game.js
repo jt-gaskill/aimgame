@@ -19,7 +19,7 @@ export default function Game({items}){
                 {/* <Clicker count={items.count} handleCount={items.setCount} active={items.active} />
                 <Aim count={items.count} handleCount={items.setCount} active={items.active} /> */}
                 {/* {games[items.game]} */}
-                <Tempo />
+                <Tempo count={items.count} handleCount={items.setCount} active={items.active}/>
             </div>
             <Lobby room={items.room} members={items.members} leaveRoom={items.leaveRoom} name={items.name}/>
             
