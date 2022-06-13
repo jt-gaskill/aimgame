@@ -3,8 +3,8 @@ import React from "react"
 import Intro from "./components/Intro"
 import Game from "./components/Game"
 
-const socket = io.connect("https://react-aimgame.herokuapp.com/")
-// const socket = io.connect("http://localhost:3001")
+// const socket = io.connect("https://react-aimgame.herokuapp.com/")
+const socket = io.connect("http://localhost:3001")
 
 export default function App(){
     const [name, setName] = React.useState("")

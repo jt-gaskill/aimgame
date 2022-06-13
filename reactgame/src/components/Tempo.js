@@ -47,9 +47,10 @@ export default function Tempo(props){
     document.addEventListener("keydown", function handler(event){
         console.log(event.key)
         if(props.active){
-            if(boxes[0] && boxes[0].right>360 && boxes[0].right<400){
+            const activeboxes = boxes.filter((box) => (box.right>320 && box.right<400))
+            activeboxes.forEach(box => {
                 if(event.key === "ArrowUp"){
-                    if(boxes[0] && boxes[0].direction === "up"){
+                    if(box && box.direction === "up"){
                         props.handleCount(props.count + 1)
                         let tempboxes = boxes
                         tempboxes.shift()
@@ -60,7 +61,7 @@ export default function Tempo(props){
                     }
                 }
                 else if(event.key === "ArrowLeft"){
-                    if(boxes[0] && boxes[0].direction === "left"){
+                    if(box && box.direction === "left"){
                         props.handleCount(props.count + 1)
                         let tempboxes = boxes
                         tempboxes.shift()
@@ -71,7 +72,7 @@ export default function Tempo(props){
                     }
                 }
                 else if(event.key === "ArrowRight"){
-                    if(boxes[0] && boxes[0].direction === "right"){
+                    if(box && box.direction === "right"){
                         props.handleCount(props.count + 1)
                         let tempboxes = boxes
                         tempboxes.shift()
@@ -82,7 +83,7 @@ export default function Tempo(props){
                     }
                 }
                 else if(event.key === "ArrowDown"){
-                    if(boxes[0] && boxes[0].direction === "down"){
+                    if(box && box.direction === "down"){
                         props.handleCount(props.count + 1)
                         let tempboxes = boxes
                         tempboxes.shift()
@@ -92,8 +93,56 @@ export default function Tempo(props){
                         props.handleCount(props.count -1)
                     }
                 }
-            }
+            })
         }
+    
+            // if(boxes[0] && boxes[0].right>360 && boxes[0].right<400){
+            //     if(event.key === "ArrowUp"){
+            //         if(boxes[0] && boxes[0].direction === "up"){
+            //             props.handleCount(props.count + 1)
+            //             let tempboxes = boxes
+            //             tempboxes.shift()
+            //             setBoxes(tempboxes)
+            //         }
+            //         else{
+            //             props.handleCount(props.count -1)
+            //         }
+            //     }
+            //     else if(event.key === "ArrowLeft"){
+            //         if(boxes[0] && boxes[0].direction === "left"){
+            //             props.handleCount(props.count + 1)
+            //             let tempboxes = boxes
+            //             tempboxes.shift()
+            //             setBoxes(tempboxes)
+            //         }
+            //         else{
+            //             props.handleCount(props.count -1)
+            //         }
+            //     }
+            //     else if(event.key === "ArrowRight"){
+            //         if(boxes[0] && boxes[0].direction === "right"){
+            //             props.handleCount(props.count + 1)
+            //             let tempboxes = boxes
+            //             tempboxes.shift()
+            //             setBoxes(tempboxes)
+            //         }
+            //         else{
+            //             props.handleCount(props.count -1)
+            //         }
+            //     }
+            //     else if(event.key === "ArrowDown"){
+            //         if(boxes[0] && boxes[0].direction === "down"){
+            //             props.handleCount(props.count + 1)
+            //             let tempboxes = boxes
+            //             tempboxes.shift()
+            //             setBoxes(tempboxes)
+            //         }
+            //         else{
+            //             props.handleCount(props.count -1)
+            //         }
+            //     }
+            // }
+        
         this.removeEventListener('keydown', handler)
     })
 
