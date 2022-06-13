@@ -23,6 +23,7 @@ export default function GameInfo({items}){
             <div className="">
                 <h5 className="text-center font-bold text-2xl">Game Information</h5>
                 <hr className="border-black"></hr>
+                <p className="mt-3">Game: {gamenames[items.game]}</p>
                 <p className="mt-3">Best: {best}</p>
                 <p className="mt-4">Count: {items.count}</p>
             </div>

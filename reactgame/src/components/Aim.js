@@ -24,8 +24,10 @@ export default function Aim(props) {
     }
 
     function miss(){
+        if(props.active){
+            props.handleCount(props.count - 1)
+        }
         
-        props.handleCount(props.count - 1)
 
     }
 
