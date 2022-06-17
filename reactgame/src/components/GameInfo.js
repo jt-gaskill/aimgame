@@ -19,7 +19,7 @@ export default function GameInfo({items}){
 
 
     return (
-        <div className="w-1/6 bg-[#9ffac2] p-4 pt-3 rounded-3xl border-solid border-black flex flex-col justify-between">
+        <div className="w-1/6 bg-[#9ffac2] p-4 pt-3 rounded-3xl border-solid border-black flex flex-col justify-between drop">
             <div className="">
                 <h5 className="text-center font-bold text-2xl">Game Information</h5>
                 <hr className="border-black"></hr>
@@ -31,11 +31,11 @@ export default function GameInfo({items}){
             {/* {(items.host && !items.active) ? <button className="bg-green-600 rounded-md p-1" onClick={items.startGame}>Start Round</button> :
                 <button className="bg-slate-400 rounded-md p-1 cursor-default">In Progress</button> } */}
             {items.host ? (!items.active ? 
-                <button className="bg-green-600 rounded-md p-1" onClick={items.startGame}>Start Round</button> :
-                <button className="bg-slate-400 rounded-md p-1 cursor-default">In Progress</button> 
+                <button className="bg-green-600 rounded-md p-1 drop-shadow-xl" onClick={items.startGame}>Start Round</button> :
+                <button className="bg-slate-400 rounded-md p-1 cursor-default drop-shadow-xl">In Progress</button> 
             ) : (!items.active ? 
-                    <button className="bg-yellow-500 rounded-md p-1 cursor-default">Waiting for host...</button> :
-                    <button className="bg-slate-400 rounded-md p-1 cursor-default">In Progress</button> 
+                    <button className="bg-yellow-500 rounded-md p-1 cursor-default drop-shadow-xl">Waiting for host...</button> :
+                    <button className="bg-slate-400 rounded-md p-1 cursor-default drop-shadow-xl">In Progress</button> 
             )}
             
         </div>

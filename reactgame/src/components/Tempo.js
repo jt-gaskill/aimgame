@@ -4,6 +4,7 @@ import {BsArrowLeft, BsArrowDown, BsArrowUp, BsArrowRight} from "react-icons/bs"
 export default function Tempo(props){
     const [boxes, setBoxes] = React.useState([{direction: "up", right: 30}])
     const [missed, setMissed] = React.useState([])
+    const [spawn, setSpawn] = React.useState(1)
 
     React.useEffect(() => {
         let interval = null
@@ -20,20 +21,21 @@ export default function Tempo(props){
                     props.handleCount(props.count - 1)
                 }
                 
-                
             }
             setMissed(tempmissed)
-            if(Math.random() < .008){
+            if(spawn === 75){
                 let newdirec = Math.random()
                 if(newdirec < .25){newdirec = "up"}
                 else if(newdirec < .5){newdirec = "down"}
                 else if(newdirec < .75){newdirec = "left"}
                 else{newdirec = "right"}
-
-             tempboxes.push({direction: newdirec, right: 30})
+                tempboxes.push({direction: newdirec, right: 30})
+                setSpawn(0)
+            }else{
+                setSpawn(spawn + 1)
             }
             setBoxes(tempboxes)
-        }, 4)
+        }, 2)
         return () => clearInterval(interval)
     },[boxes])
 
@@ -95,54 +97,7 @@ export default function Tempo(props){
                 }
             })
         }
-    
-            // if(boxes[0] && boxes[0].right>360 && boxes[0].right<400){
-            //     if(event.key === "ArrowUp"){
-            //         if(boxes[0] && boxes[0].direction === "up"){
-            //             props.handleCount(props.count + 1)
-            //             let tempboxes = boxes
-            //             tempboxes.shift()
-            //             setBoxes(tempboxes)
-            //         }
-            //         else{
-            //             props.handleCount(props.count -1)
-            //         }
-            //     }
-            //     else if(event.key === "ArrowLeft"){
-            //         if(boxes[0] && boxes[0].direction === "left"){
-            //             props.handleCount(props.count + 1)
-            //             let tempboxes = boxes
-            //             tempboxes.shift()
-            //             setBoxes(tempboxes)
-            //         }
-            //         else{
-            //             props.handleCount(props.count -1)
-            //         }
-            //     }
-            //     else if(event.key === "ArrowRight"){
-            //         if(boxes[0] && boxes[0].direction === "right"){
-            //             props.handleCount(props.count + 1)
-            //             let tempboxes = boxes
-            //             tempboxes.shift()
-            //             setBoxes(tempboxes)
-            //         }
-            //         else{
-            //             props.handleCount(props.count -1)
-            //         }
-            //     }
-            //     else if(event.key === "ArrowDown"){
-            //         if(boxes[0] && boxes[0].direction === "down"){
-            //             props.handleCount(props.count + 1)
-            //             let tempboxes = boxes
-            //             tempboxes.shift()
-            //             setBoxes(tempboxes)
-            //         }
-            //         else{
-            //             props.handleCount(props.count -1)
-            //         }
-            //     }
-            // }
-        
+
         this.removeEventListener('keydown', handler)
     })
 
@@ -169,17 +124,17 @@ export default function Tempo(props){
         <div className="h-[500px] w-[800px] bg-black flex justify-center select-none">
             {props.active ? 
             <div className="h-[500px] w-[800px] bg-black relative text-white select-none overflow-hidden flex">
-            <div className="mx-auto flex flex-col justify-center">
-                <div className="border-white h-20 w-20 border-2 my-2" style={{borderColor: "blue"}}></div>
-                <div className="border-white h-20 w-20 border-2 my-2" style={{borderColor: "red"}}></div>
-                <div className="border-white h-20 w-20 border-2 my-2" style={{borderColor: "green"}}></div>
-                <div className="border-white h-20 w-20 border-2 my-2" style={{borderColor: "yellow"}}></div>
-            </div>
-            {boxdivs}
-            {misseddivs}
+                <div className="mx-auto flex flex-col justify-center">
+                    <div className="border-white h-20 w-20 border-2 my-2" style={{borderColor: "blue"}}></div>
+                    <div className="border-white h-20 w-20 border-2 my-2" style={{borderColor: "red"}}></div>
+                    <div className="border-white h-20 w-20 border-2 my-2" style={{borderColor: "green"}}></div>
+                    <div className="border-white h-20 w-20 border-2 my-2" style={{borderColor: "yellow"}}></div>
+                </div>
+                {boxdivs}
+                {misseddivs}
             
             </div>
-            : <p className="text-white leading-[500px]">Don't miss a box</p>}
+            : <p className="text-white leading-[500px]">Don't miss a box!</p>}
         </div>
     )
 }
