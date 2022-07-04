@@ -12,8 +12,8 @@ export default function Intro(props){
                         placeholder="name" onChange={(event) => props.handleChange(event.target.value)} />
                 </div>  
                 <div className="flex justify-evenly">
-                    <button className="w-32 rounded-full px-4 py-1 drop-shadow-2xl bg-[#8ee4af] hover:bg-[#76c293]" onClick={props.joinGame}>Join</button>
-                    <button className="w-32 rounded-full px-4 py-1 drop-shadow-2xl bg-[#8ee4af] hover:bg-[#76c293]" onClick={props.createLobby}>Create lobby</button>
+                    <button className="w-32 rounded-xl px-4 py-1 drop-shadow-2xl bg-[#8ee4af] hover:bg-[#76c293]" onClick={props.joinGame}>Join</button>
+                    <button className="w-32 rounded-xl px-4 py-1 drop-shadow-2xl bg-[#8ee4af] hover:bg-[#76c293]" onClick={props.createLobby}>Create lobby</button>
                     {/* <button className="w-32 rounded-full bg-gradient-to-r from-pink-500 to-yellow-500 px-4 py-1" onClick={props.createLobby}>Create lobby</button> */}
                 </div>
             </div>

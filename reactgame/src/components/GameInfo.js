@@ -5,7 +5,7 @@ export default function GameInfo({items}){
     const gamenames = ["Clicker", "Aim", "Tempo"]
 
     const [best, setBest] = React.useState(() => (JSON.parse(localStorage.getItem("best"+gamenames[items.game])) || 0))
-    console.log(gamenames[items.game])
+    // console.log(gamenames[items.game])
     React.useEffect(() => {
         if (items.count > best) {
             setBest(items.count)
@@ -31,7 +31,7 @@ export default function GameInfo({items}){
             {/* {(items.host && !items.active) ? <button className="bg-green-600 rounded-md p-1" onClick={items.startGame}>Start Round</button> :
                 <button className="bg-slate-400 rounded-md p-1 cursor-default">In Progress</button> } */}
             {items.host ? (!items.active ? 
-                <button className="bg-green-600 rounded-md p-1 drop-shadow-xl" onClick={items.startGame}>Start Round</button> :
+                <button className="rounded-md p-1 drop-shadow-xl bg-green-600 hover:bg-green-700" onClick={items.startGame}>Start Round</button> :
                 <button className="bg-slate-400 rounded-md p-1 cursor-default drop-shadow-xl">In Progress</button> 
             ) : (!items.active ? 
                     <button className="bg-yellow-500 rounded-md p-1 cursor-default drop-shadow-xl">Waiting for host...</button> :

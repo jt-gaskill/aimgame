@@ -18,9 +18,9 @@ export default function Game({items}){
         <div className="flex justify-between 2xl:justify-center overflow-auto">
             <GameInfo items={items} />
             <div className="2xl:mx-24">
-                {games[items.game]}
+                {/* {games[items.game]} */}
                 {/* <Tempo count={items.count} handleCount={items.setCount} active={items.active}/> */}
-                {/* <Trivia /> */}
+                <Trivia count={items.count} handleCount={items.setCount} active={items.active}/>
             </div>
             <Lobby room={items.room} members={items.members} leaveRoom={items.leaveRoom} name={items.name}/>
             

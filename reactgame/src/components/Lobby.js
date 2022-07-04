@@ -53,7 +53,7 @@ export default function Lobby(props){
                     {tempMembers}
                 </div>
             </div>
-            <button className="bg-red-500 rounded-md p-1 drop-shadow-xl" onClick={props.leaveRoom}>Leave</button>
+            <button className="rounded-md p-1 drop-shadow-xl bg-red-500 hover:bg-red-600" onClick={props.leaveRoom}>Leave</button>
         </div>
     )
 }
