@@ -82,3 +82,29 @@ code {
     position: fixed;
     top: 250px;
 } */
+
+.hovertrans{
+    transition-property: background-color, box-shadow, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+}
+
+.wrapper{
+    /* transition-property: top;
+    transition-timing-function: linear;
+    transition-duration: 1s; */
+    transition: all .4s cubic-bezier(0.7, 1.05, 0.86, 1.29);
+}
+
+.a{
+    transform: translateY(0px);
+}
+.aa {
+    transform: translateY(400px);
+}
+.aaa {
+    transform: translateY(800px);
+}
+.aaaa {
+    transform: translateY(1000px);
+}

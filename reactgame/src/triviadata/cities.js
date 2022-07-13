@@ -1,257 +1,255 @@
 export default {
-    "cities":{
-        "data":[
+    "cities":[
         {
             "name": "New York City",
-            "population": "19,768,458",
-            "state": "NY, NJ, CT, PA"
+            "data": "19,768,458",
+            "extra": "NY, NJ, CT, PA"
         },
         {
           "name": "Los Angeles",
-          "population": "12,997,353",
-          "state": "CA"
+          "data": "12,997,353",
+          "extra": "CA"
         },
         {
           "name": "Chicago",
-          "population": "9,509,934",
-          "state": "IL, IN, WI"
+          "data": "9,509,934",
+          "extra": "IL, IN, WI"
         },
         {
           "name": "Dallas",
-          "population": "7.759,615",
-          "state": "TX"  
+          "data": "7,759,615",
+          "extra": "TX"  
         },
         {
           "name": "Houston",
-          "population": "7,206,841",
-          "state": "TX"  
+          "data": "7,206,841",
+          "extra": "TX"  
         },
         {
           "name": "Washington D.C.",
-          "population": "6,356,434",
-          "state": "DC, MD, VA, WV, PA"  
+          "data": "6,356,434",
+          "extra": "DC, MD, VA, WV, PA"  
         },
         {
           "name": "Philadelphia",
-          "population": "6,228,601",
-          "state": "PA, NJ, DE, MD"  
+          "data": "6,228,601",
+          "extra": "PA, NJ, DE, MD"  
         },
         {
           "name": "Atlanta",
-          "population": "6,114,050",
-          "state": "GA, AL"  
+          "data": "6,114,050",
+          "extra": "GA, AL"  
         },
         {
           "name": "Miami",
-          "population": "6,091,747",
-          "state": "FL"  
+          "data": "6,091,747",
+          "extra": "FL"  
         },
         {
           "name": "Phoenix",
-          "population": "4,946,145",
-          "state": "AZ"  
+          "data": "4,946,145",
+          "extra": "AZ"  
         },
         {
           "name": "Boston",
-          "population": "4,899,932",
-          "state": "MA, RI, NH, CT"  
+          "data": "4,899,932",
+          "extra": "MA, RI, NH, CT"  
         },
         {
           "name": "Riverside",
-          "population": "4,653,105",
-          "state": "CA"  
+          "data": "4,653,105",
+          "extra": "CA"  
         },
         {
           "name": "San Francisco",
-          "population": "4,623,264",
-          "state": "CA"  
+          "data": "4,623,264",
+          "extra": "CA"  
         },
         {
           "name": "Detroit",
-          "population": "4,365,205",
-          "state": "MI"  
+          "data": "4,365,205",
+          "extra": "MI"  
         },
         {
           "name": "Seattle",
-          "population": "4,011,553",
-          "state": "WA"  
+          "data": "4,011,553",
+          "extra": "WA"  
         },
         {
           "name": "Minneapolis",
-          "population": "3,690,512",
-          "state": "MN, WI"  
+          "data": "3,690,512",
+          "extra": "MN, WI"  
         },
         {
           "name": "San Diego",
-          "population": "3,286,069",
-          "state": "CA"  
+          "data": "3,286,069",
+          "extra": "CA"  
         },
         {
           "name": "Tampa",
-          "population": "3,219,514",
-          "state": "FL"  
+          "data": "3,219,514",
+          "extra": "FL"  
         },
         {
           "name": "Denver",
-          "population": "2,972,566",
-          "state": "CO"  
+          "data": "2,972,566",
+          "extra": "CO"  
         },
         {
           "name": "Baltimore",
-          "population": "2,838,327",
-          "state": "DC, MD, VA, WV, PA"  
+          "data": "2,838,327",
+          "extra": "DC, MD, VA, WV, PA"  
         },
         {
           "name": "St. Louis",
-          "population": "2,809,299",
-          "state": "MO, IL"  
+          "data": "2,809,299",
+          "extra": "MO, IL"  
         },
         {
           "name": "Charlotte",
-          "population": "2,701,046",
-          "state": "NC, SC"  
+          "data": "2,701,046",
+          "extra": "NC, SC"  
         },
         {
           "name": "Orlando",
-          "population": "2,691,925",
-          "state": "FL"  
+          "data": "2,691,925",
+          "extra": "FL"  
         },
         {
           "name": "San Antonio",
-          "population": "2,601,788",
-          "state": "TX"  
+          "data": "2,601,788",
+          "extra": "TX"  
         },
         {
           "name": "Portland",
-          "population": "2,511,612",
-          "state": "OR, WA"  
+          "data": "2,511,612",
+          "extra": "OR, WA"  
         },
         {
           "name": "Sacramento",
-          "population": "2,411,428",
-          "state": "CA"  
+          "data": "2,411,428",
+          "extra": "CA"  
         },
         {
           "name": "Pittsburgh",
-          "population": "2,353,538",
-          "state": "PA, OH, WV"  
+          "data": "2,353,538",
+          "extra": "PA, OH, WV"  
         },
         {
           "name": "Austin",
-          "population": "2,352,426",
-          "state": "TX"  
+          "data": "2,352,426",
+          "extra": "TX"  
         },
         {
           "name": "Las Vegas",
-          "population": "2,292,476",
-          "state": "NV, AZ"  
+          "data": "2,292,476",
+          "extra": "NV, AZ"  
         },
         {
           "name": "Cincinnati",
-          "population": "2,259,935",
-          "state": "OH, KY, IN"  
+          "data": "2,259,935",
+          "extra": "OH, KY, IN"  
         },
         {
           "name": "Kansas City",
-          "population": "2,199,490",
-          "state": "MO, KS"  
+          "data": "2,199,490",
+          "extra": "MO, KS"  
         },
         {
           "name": "Columbus",
-          "population": "2,151,017",
-          "state": "OH"  
+          "data": "2,151,017",
+          "extra": "OH"  
         },
         {
           "name": "Indianapolis",
-          "population": "2,126,804",
-          "state": "IN"  
+          "data": "2,126,804",
+          "extra": "IN"  
         },
         {
           "name": "Cleveland",
-          "population": "2,075,662",
-          "state": "OH"  
+          "data": "2,075,662",
+          "extra": "OH"  
         },
         {
           "name": "Nashville",
-          "population": "2,012,476",
-          "state": "TN"  
+          "data": "2,012,476",
+          "extra": "TN"  
         },
         {
           "name": "San Jose",
-          "population": "1,952,185",
-          "state": "CA"  
+          "data": "1,952,185",
+          "extra": "CA"  
         },
         {
           "name": "Norfolk",
-          "population": "1,803,328",
-          "state": "VA, NC"  
+          "data": "1,803,328",
+          "extra": "VA, NC"  
         },
         {
           "name": "Providence",
-          "population": "1,675,774",
-          "state": "MA, RI, NH, CT"  
+          "data": "1,675,774",
+          "extra": "MA, RI, NH, CT"  
         },
         {
           "name": "Jacksonville",
-          "population": "1,637,666",
-          "state": "FL, GA"  
+          "data": "1,637,666",
+          "extra": "FL, GA"  
         },
         {
           "name": "Milwaukee",
-          "population": "1,566,487",
-          "state": "WI"  
+          "data": "1,566,487",
+          "extra": "WI"  
         },
         {
           "name": "Raleigh",
-          "population": "1,448,411",
-          "state": "NC"  
+          "data": "1,448,411",
+          "extra": "NC"  
         },
         {
           "name": "Oklahoma City",
-          "population": "1,441,647",
-          "state": "OK"  
+          "data": "1,441,647",
+          "extra": "OK"  
         },
         {
           "name": "Memphis",
-          "population": "1,336,103",
-          "state": "TN, MS, AR"  
+          "data": "1,336,103",
+          "extra": "TN, MS, AR"  
         },
         {
           "name": "Richmond",
-          "population": "1,324,062",
-          "state": "VA"  
+          "data": "1,324,062",
+          "extra": "VA"  
         },
         {
           "name": "Louisville",
-          "population": "1,284,566",
-          "state": "KY, IN"  
+          "data": "1,284,566",
+          "extra": "KY, IN"  
         },
         {
           "name": "Salt Lake City",
-          "population": "1,263,061",
-          "state": "UT"  
+          "data": "1,263,061",
+          "extra": "UT"  
         },
         {
           "name": "New Orleans",
-          "population": "1,261,726",
-          "state": "LA, MS"  
+          "data": "1,261,726",
+          "extra": "LA, MS"  
         },
         {
           "name": "Hartford",
-          "population": "1,211,906",
-          "state": "CT"  
+          "data": "1,211,906",
+          "extra": "CT"  
         },
         {
           "name": "Buffalo",
-          "population": "1,162,336",
-          "state": "NY"  
+          "data": "1,162,336",
+          "extra": "NY"  
         },
         {
           "name": "Birmingham",
-          "population": "1,114,262",
-          "state": "AL"  
+          "data": "1,114,262",
+          "extra": "AL"  
         }
     ],
     question: "Which city has a larger population?"
-}
 }
