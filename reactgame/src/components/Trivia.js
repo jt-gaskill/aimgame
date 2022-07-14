@@ -6,10 +6,7 @@ import movies from "./../triviadata/movies.js"
 export default function Trivia(props){
     // const [cityquestions, setCityQuestions] = React.useState(() => [...Array(50).keys()])
     const [questionsets, setQuestionSets] = React.useState(() => [[...Array(50).keys()], [...Array(50).keys()], [...Array(50).keys()]])
-    const [triviaset, setTriviaSet] = React.useState(() => Math.floor(Math.random()*3))
-    
-    const [position, setPosition] = React.useState("a")
-    const [qcount, setQCount] = React.useState(() => 2)
+
     // console.log(position)
     // console.log("peen", qcount)
 
@@ -25,25 +22,6 @@ export default function Trivia(props){
         qs.push(getPair())
         return qs
     })
-
-    function getChoice(){
-        let templist = questionsets[triviaset]
-        if(templist.length < 2){
-            templist = [...Array(50).keys()]
-        }
-
-        while(true){
-            let num = Math.ceil(Math.random()*49)
-            if((num || num === 0) && templist.includes(num)){
-                templist.splice(templist.indexOf(num), 1)
-                let tempsets = questionsets
-                tempsets[triviaset] = templist
-                setQuestionSets(tempsets)
-                // console.log('ret')
-                return num
-            }
-        }
-    }
 
     function getPair(){
         // let templist = questionsets[triviaset]
@@ -68,24 +46,6 @@ export default function Trivia(props){
                 return {"set":tempset, "choice1":num1, "choice2":num}
             }
         }
-    }
-    
-
-    const[choice1, setChoice1] = React.useState(() => getChoice())
-    const[choice2, setChoice2] = React.useState(() => getChoice())
-
-    function left(){
-        if(parseFloat(sets[triviaset][setkeys[triviaset]][choice1]['data'].replace(/,/g, "")) > parseFloat(sets[triviaset][setkeys[triviaset]][choice2]['data'].replace(/,/g, ""))){
-            props.handleCount(props.count + 1)
-        }
-        else{
-            props.handleCount(props.count - 1)
-        }
-        setTriviaSet(Math.floor(Math.random()*3))
-        
-        setPosition(position+"a")
-        setChoice1(getChoice())
-        setChoice2(getChoice())
     }
 
     React.useEffect(() => {
@@ -124,7 +84,7 @@ export default function Trivia(props){
                 setMinusCount(Date.now())
             }
         }
-        setTriviaSet(Math.floor(Math.random()*3))
+        // setTriviaSet(Math.floor(Math.random()*3))
 
         // newTiles()
         let tempactive = active
@@ -160,7 +120,6 @@ export default function Trivia(props){
         </div>
         
         templefttiles[len-3] = undefined
-        setQCount((oldcount) => oldcount + 1)
         setLeftTiles(templefttiles)
         // console.log(lefttiles)
         let temprighttiles = righttiles 
@@ -250,16 +209,33 @@ export default function Trivia(props){
     ]))
     
     return(
+        
         <div className="flex-col">
-            <div className="bg-black h-32 text-white">{sets[active[1]["set"]]['question']}</div>
-            <div className="h-[372px] w-[800px]  flex justify-center select-none">
-                <div className="h-[372px] w-[400px] bg-orange-800 flex justify-center overflow-hidden relative">
-                    {lefttiles}
+            {props.active ? 
+            <div>
+                <div className="bg-black h-32 text-white flex flex-col justify-center px-6">
+                    <div className="bg-gray-600 h-[90px] rounded-2xl flex justify-center">
+                        <div className="flex flex-col justify-center text-2xl">
+                            {sets[active[1]["set"]]['question']}
+                        </div>
+                        
+                    </div>
+                    
                 </div>
-                <div className="h-[372px] w-[400px] bg-green-700 flex justify-center overflow-hidden relative">
-                    {righttiles}
+                <div className="h-[372px] w-[800px] flex justify-center select-none">
+                    <div className="h-[372px] w-[400px] bg-orange-800 flex justify-center overflow-hidden relative">
+                        {lefttiles}
+                    </div>
+                    <div className="h-[372px] w-[400px] bg-green-700 flex justify-center overflow-hidden relative">
+                        {righttiles}
+                    </div>
                 </div>
-            </div>
+            </div> 
+            : <div className="h-[500px] w-[800px] bg-black flex justify-center select-none">
+                <p className="text-white leading-[500px]">Select the true statement</p>
+            </div>}
+            
+            
             
         </div>
         

@@ -2,7 +2,7 @@ import React from "react"
 import Countdown from "./Countdown"
 
 export default function GameInfo({items}){
-    const gamenames = ["Clicker", "Aim", "Tempo"]
+    const gamenames = ["Clicker", "Aim", "Tempo", "Trivia"]
 
     const [best, setBest] = React.useState(() => (JSON.parse(localStorage.getItem("best"+gamenames[items.game])) || 0))
     // console.log(gamenames[items.game])
