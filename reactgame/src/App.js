@@ -26,7 +26,7 @@ export default function App(){
     React.useEffect(() => {
         // console.log("beginning", room)
         if(room !== "" && !begin){
-            console.log(room)
+            // console.log(room)
             setBegin(true)
         }
     },[room])
@@ -46,7 +46,7 @@ export default function App(){
             }
             setMembers(data)
             if(!presentHost){
-                console.log('no host')
+                // console.log('no host')
                 alert("The host has quit, ending game...")
                 leaveRoom()
             }
@@ -176,7 +176,7 @@ export default function App(){
 
     React.useEffect(() => {
         if(host && !active){
-            console.log("new game")
+            // console.log("new game")
             socket.emit("get_game", game)
         }
     },[active])

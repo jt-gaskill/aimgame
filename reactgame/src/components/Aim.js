@@ -6,8 +6,8 @@ import wrong from "./../sound/wrong.mp3"
 export default function Aim(props) {
                                     // [vertical, horizontal]
     const [position, setPosition] = React.useState([Math.ceil(Math.random() * 490), Math.ceil(Math.random() * 790)])
-    let weenor = new Audio(correct)
-    let peenor = new Audio(wrong)
+    let correctaudio = new Audio(correct)
+    let wrongaudio = new Audio(wrong)
 
     // const [best, setBest] = React.useState(() => (JSON.parse(localStorage.getItem("bestAim")) || 0))
 
@@ -25,13 +25,13 @@ export default function Aim(props) {
         e.stopPropagation()
         setPosition([Math.ceil(Math.random() * 488)+1, Math.ceil(Math.random() * 788)+1])
         props.handleCount(props.count +1)
-        weenor.play()
+        correctaudio.play()
     }
 
     function miss(){
         if(props.active){
             props.handleCount(props.count - 1)
-            peenor.play()
+            wrongaudio.play()
         }
         
 
